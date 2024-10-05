@@ -11,7 +11,7 @@ function generatePassword(length = 8) {
 }
 
 function checkPassword(password, confirmPassword) {
-    return password === confirmPassword ? "Паролі співпадають" : "Паролі не співпадають";
+    return password === confirmPassword ? "Вітаю паролі співпали" : "Хмм спробуй ще раз";
 }
 
 function meetsRequirements(password) {
@@ -26,10 +26,10 @@ function generateAndCheckPassword(length = 8) {
     let passwordChoice;
     let userPassword;
 
-    const userChoice = confirm("Бажаєте ввести власний пароль? Натисніть 'ОК' для так, 'Cancel' для створення пароля.");
+    const userChoice = confirm("Хочеш створити свій пароль тисни ОК. Згенерувати пароль, тисни скасувати");
 
     if (userChoice) {
-        userPassword = prompt("Будь ласка, введіть свій пароль:");
+        userPassword = prompt("Вводь пароль:");
     } else {
         userPassword = generatePassword(length);
         const showPassword = confirm("Показати згенерований пароль?");
@@ -39,20 +39,20 @@ function generateAndCheckPassword(length = 8) {
     }
 
     while (!meetsRequirements(userPassword)) {
-        alert("Пароль не відповідає вимогам: він має містити хоча б одну велику літеру, одну маленьку літеру та одну цифру.");
-        const retryChoice = confirm("Бажаєте ввести новий пароль самостійно? Натисніть 'ОК' для так, 'Cancel' для створення пароля.");
+        alert("Хмм, напевне твій пароль, не відповідає безпеці. Пароль має містити пеликі та малі літерк, та цифру :)");
+        const retryChoice = confirm("Введеш новий пароль, якщо так то тисни 'ОК' чи 'Скасувати' для створення пароля.");
         if (retryChoice) {
-            userPassword = prompt("Будь ласка, введіть новий пароль:");
+            userPassword = prompt("Ввводь новий пароль:");
         } else {
             userPassword = generatePassword(length);
-            const showPassword = confirm("Показати новий згенерований пароль?");
+            const showPassword = confirm("Хочеш побачити згенерований пароль?");
             if (showPassword) {
                 alert(`Згенерований пароль: ${userPassword}`);
             }
         }
     }
 
-    const confirmPassword = prompt("Будь ласка, підтвердіть свій пароль:");
+    const confirmPassword = prompt("Введи пароль ще раз для підтвердження :");
     const result = checkPassword(userPassword, confirmPassword);
     alert(result);
 }
